@@ -33,6 +33,6 @@ public class Calculator {
 	}
 	
 	public void showResult() {
-		System.out.println("Result : " + this.result);
+		System.out.printf("%s%f%n" ,"Result : ", this.result);
 	}
 }
