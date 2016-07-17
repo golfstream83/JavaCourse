@@ -17,7 +17,6 @@ public class BubbleSortArrayTest {
 
         //action
         assertThat(sortedArray, is(unsortedArray));
-
     }
 
 }
