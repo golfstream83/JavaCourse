@@ -8,7 +8,6 @@
 	
 	<modules>
 		<module>Modul1-Basic-syntax</module>
-		<module>Modul2-OOP</module>
 	</modules>  
 
   <properties>
