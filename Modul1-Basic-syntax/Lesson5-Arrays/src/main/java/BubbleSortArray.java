@@ -1,7 +1,7 @@
 public class BubbleSortArray {
 
     public static void main(String[] args) {
-        int values[] = {3, 45, 6, 2, 11, 1, 56, 5};
+        int[] values = {3, 45, 6, 2, 11, 1, 56, 5};
         for (int x : new BubbleSortArray().sort(values)) {
             System.out.println(x);
         }
