@@ -1,13 +1,6 @@
 
 public class RemovingDuplicatesInTheArray {
 
-    public static void main(String[] args) {
-        RemovingDuplicatesInTheArray removingDuplicatesInTheArray = new RemovingDuplicatesInTheArray();
-        String[] suppliedArray = new String[] {"one", "one", "two", "three", "four", "four"};
-        removingDuplicatesInTheArray.removingDuplicates(suppliedArray);
-        removingDuplicatesInTheArray.print(suppliedArray);
-    }
-
     String[] removingDuplicates(String[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
