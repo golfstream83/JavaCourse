@@ -25,7 +25,7 @@ public class RemovingDuplicatesInTheArray {
 
     void print (String[] array) {
         for (String x : array) {
-            System.out.printf(x + " ");
+            System.out.printf(String.format("%s ", x));
         }
     }
 
