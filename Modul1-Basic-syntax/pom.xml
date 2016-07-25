@@ -12,6 +12,7 @@
 		<module>Lesson3-Conditional-operator</module>
 		<module>Lesson4-Cycles</module>
 		<module>Lesson5-Arrays</module>
+		<module>TestTask</module>
 	</modules>  
 
   <properties>
