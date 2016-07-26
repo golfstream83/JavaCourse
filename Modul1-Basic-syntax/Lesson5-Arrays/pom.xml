@@ -14,8 +14,8 @@
 	</dependencies>
 
 	<parent>	
-	<groupId>JavaFromAtoZ</groupId>
-	<artifactId>Lessons</artifactId>
+	<groupId>Module1</groupId>
+	<artifactId>Basic syntax</artifactId>
 	<version>1.0.0</version>
 	</parent>
   
