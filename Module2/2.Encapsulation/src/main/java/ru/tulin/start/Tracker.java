@@ -11,7 +11,6 @@ import java.util.Random;
 
 public class Tracker {
     private Item[] items = new Item[10];
-    private int position = 0;
     private static final Random RN = new Random();
 
     /**
@@ -21,7 +20,12 @@ public class Tracker {
      */
     protected Item addItem(Item item) {
         item.setId(this.generateId());
-        this.items[position++] = item;
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] == null) {
+                this.items[index] = item;
+                break;
+            }
+        }
         return item;
     }
 
@@ -30,10 +34,10 @@ public class Tracker {
      * @param fresh
      */
     protected void editItem(Item fresh) {
-        for (int index = 0; index != items.length; ++index) {
-            Item item = items[index];
+        for (int index = 0; index != this.items.length; ++index) {
+            Item item = this.items[index];
             if (item != null && item.getId().equals(fresh.getId())) {
-                items[index] = fresh;
+                this.items[index] = fresh;
                 break;
             }
         }
@@ -44,12 +48,13 @@ public class Tracker {
      */
     protected void deleteItem(String id) {
         //assign null array element
-        for (int index = 0; index != items.length; index++) {
-            if (items[index] != null && items[index].getId().equals(id)) {
-                items[index] = null;
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] != null && this.items[index].getId().equals(id)) {
+                this.items[index] = null;
                 break;
             }
         }
+
         //group the not null items at the beginning of the array
         for (int index = 0; index < items.length - 1; index++) {
             if (items[index] == null) {
@@ -62,8 +67,6 @@ public class Tracker {
                 }
             }
         }
-        //reduce the length of the array of items
-        this.position--;
     }
 
     /**
@@ -71,9 +74,22 @@ public class Tracker {
      * @return an array of items
      */
     protected Item[] showAllItem() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
+        int count = 0;
+
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] != null) {
+                count++;
+            }
+        }
+
+        Item[] result = new Item[count];
+        count = 0;
+
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] != null) {
+                result[count] = this.items[index];
+                count++;
+            }
         }
         return result;
     }
@@ -84,12 +100,23 @@ public class Tracker {
      * @return result array
      */
     protected Item[] filteredByName(String name) {
-        Item result[] = new Item[this.position];
-        for (int index = 0; index != items.length; index++) {
-            if (items[index] != null && items[index].getName().contains(name)) {
-                result[index] = items[index];
+        int count = 0;
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] != null && this.items[index].getName().contains(name)) {
+                count++;
             }
         }
+
+        Item result[] = new Item[count];
+        count = 0;
+
+        for (int index = 0; index != this.items.length; index++) {
+            if (this.items[index] != null && this.items[index].getName().contains(name)) {
+                result[count] = this.items[index];
+                count++;
+            }
+        }
+
         return result;
     }
 
@@ -109,12 +136,14 @@ public class Tracker {
      */
     protected Item findById(String id) {
         Item result = null;
+
         for (Item item : items) {
             if (item.getId().equals(id)) {
                 result = item;
                 break;
             }
         }
+
         return result;
     }
 }

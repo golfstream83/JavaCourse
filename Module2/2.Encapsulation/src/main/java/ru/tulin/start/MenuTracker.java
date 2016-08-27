@@ -168,11 +168,6 @@ public class MenuTracker {
 
 
     private class ShowItems implements UserAction {
-
-        public ShowItems() {
-
-        }
-
         /**
          * method returns the class key
          * @return key
@@ -190,7 +185,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             for (Item item : tracker.showAllItem()) {
-                    System.out.println(String.format("id=%s name=%s desc=%s", item.getId(), item.getName(), item.getDescription()));
+                    //System.out.println(String.format("id=%s name=%s desc=%s", item.getId(), item.getName(), item.getDescription()));
+                System.out.println(item.toString());
             }
         }
 
@@ -224,9 +220,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Please, enter the task's name: ");
             for (Item item : tracker.filteredByName(name)) {
-                if (item != null) {
                     System.out.println(String.format("id=%s name=%s desc=%s", item.getId(), item.getName(), item.getDescription()));
-                }
             }
         }
 
