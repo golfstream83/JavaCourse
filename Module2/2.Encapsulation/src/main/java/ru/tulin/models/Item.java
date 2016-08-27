@@ -1,5 +1,8 @@
 package ru.tulin.models;
 
+import java.util.Arrays;
+import java.util.Date;
+
 /**
  * @author Tulin Victor
  * @since 06.08.2016
@@ -15,6 +18,52 @@ public class Item {
     public Item(String name, String description) {
         this.name = name;
         this.description = description;
+        this.create = new Date().getTime();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + this.name.hashCode();
+        result = prime * result + this.description.hashCode();
+        result = prime * result + (int) this.create;
+        result = prime * result + this.id.hashCode();
+        result = prime * result + Arrays.deepHashCode(this.comments);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Item other = (Item) obj;
+        if (this.name != other.name)
+            return false;
+        if (this.description != other.description)
+            return false;
+        if (this.create != other.create)
+            return false;
+        if (this.id != other.id)
+            return false;
+        if (!Arrays.deepEquals(this.comments, other.comments))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", create=" + create +
+                ", id='" + id + '\'' +
+                ", comments=" + Arrays.toString(comments) +
+                '}';
     }
 
     /**
