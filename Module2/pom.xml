@@ -14,10 +14,7 @@
 	<modules>
 		<module>1.Inheritance</module>
         <module>2.Encapsulation</module>
-        <module>3.Polymorphism</module>
-        <module>4.InnerClasses</module>
-        <module>5.Exceptions</module>
-        <module>6.AbstractAndAnonymousClasses</module>
+
 
 	</modules>  
 
