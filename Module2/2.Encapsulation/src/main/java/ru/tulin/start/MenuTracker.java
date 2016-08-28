@@ -1,5 +1,6 @@
 package ru.tulin.start;
 
+import ru.tulin.models.Comment;
 import ru.tulin.models.Item;
 
 /**
@@ -287,9 +288,9 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id: ");
             Item tempItem = tracker.findById(id);
-            for (String comment : tempItem.getComments()) {
+            for (Comment comment : tempItem.getComments()) {
                 if (comment != null) {
-                    System.out.println(comment);
+                    System.out.println(comment.getComment());
                 }
             }
         }

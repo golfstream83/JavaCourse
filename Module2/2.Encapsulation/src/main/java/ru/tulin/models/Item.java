@@ -1,5 +1,6 @@
 package ru.tulin.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -11,14 +12,14 @@ import java.util.Date;
 public class Item {
     public String name;
     public String description;
-    private long create;
+    private Date create;
     private String id;
-    private String comments[] = new String[10];
+    private Comment comments[] = new Comment[10];
 
     public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.create = new Date().getTime();
+        this.create = new Date();
     }
 
     @Override
@@ -27,7 +28,7 @@ public class Item {
         int result = 1;
         result = prime * result + this.name.hashCode();
         result = prime * result + this.description.hashCode();
-        result = prime * result + (int) this.create;
+        result = prime * result + this.create.hashCode();
         result = prime * result + this.id.hashCode();
         result = prime * result + Arrays.deepHashCode(this.comments);
         return result;
@@ -60,7 +61,7 @@ public class Item {
         return "Item{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", create=" + create +
+                ", create=" + new SimpleDateFormat("dd.MM.yyyy hh:mm").format(create.getTime()) +
                 ", id='" + id + '\'' +
                 ", comments=" + Arrays.toString(comments) +
                 '}';
@@ -102,7 +103,7 @@ public class Item {
      * Getter for the field "create"
      * @return create
      */
-    public long getCreate() {
+    public Date getCreate() {
         return create;
     }
 
@@ -110,7 +111,7 @@ public class Item {
      * Setter for the field "description"
      * @param create
      */
-    public void setCreate(long create) {
+    public void setCreate(Date create) {
         this.create = create;
     }
 
@@ -134,7 +135,7 @@ public class Item {
      * Getter for the field "comments"
      * @return comments
      */
-    public String[] getComments() {
+    public Comment[] getComments() {
         return this.comments;
     }
 
@@ -145,7 +146,7 @@ public class Item {
     public void setComment(String comment) {
         for (int index = 0; index != this.comments.length; index++) {
             if (this.comments[index] == null) {
-                this.comments[index] = comment;
+                this.comments[index] = new Comment(comment);
                 break;
             }
         }
