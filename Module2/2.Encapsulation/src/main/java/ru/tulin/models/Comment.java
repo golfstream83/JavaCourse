@@ -15,7 +15,7 @@ public class Comment {
 
     /**
      * Getter for the field "comment"
-     * @return array comment
+     * @return comment
      */
     public String getComment() {
         return comment;
