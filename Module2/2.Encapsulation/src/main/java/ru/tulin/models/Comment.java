@@ -13,6 +13,10 @@ public class Comment {
         this.comment = comment;
     }
 
+    /**
+     * Getter for the field "comment"
+     * @return array comment
+     */
     public String getComment() {
         return comment;
     }
