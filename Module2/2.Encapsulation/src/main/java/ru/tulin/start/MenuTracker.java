@@ -14,7 +14,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    private UserAction[] actions = new UserAction[8];
     private int position = 0;
 
     public MenuTracker(Input input, Tracker tracker) {
@@ -33,6 +33,7 @@ public class MenuTracker {
         this.actions[position++] = this.new FilteredByName("Filtered by name");
         this.actions[position++] = this.new AddComment("Add a comment");
         this.actions[position++] = this.new ShowCommentsSingleItem("Show comments item");
+        this.actions[position++] = this.new ExitFromTheProgram("Exit");
     }
 
     /**
@@ -281,6 +282,22 @@ public class MenuTracker {
                     System.out.println(comment.getComment());
                 }
             }
+        }
+    }
+
+    private class ExitFromTheProgram extends BaseAction {
+        public ExitFromTheProgram(String name) {
+            super(name);
+        }
+
+        @Override
+        public int key() {
+            return 7;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+
         }
     }
 }
