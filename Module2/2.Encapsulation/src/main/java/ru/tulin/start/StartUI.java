@@ -7,7 +7,6 @@ package ru.tulin.start;
  */
 
 public class StartUI {
-    private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6};
     private Input input;
 
     public StartUI(Input input) {
@@ -24,8 +23,8 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            menu.select(input.ask("select: ", ranges));
-        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+            menu.select(input.ask("select: ", menu.getAcceptableRange()));
+        } while (!"y".equals(this.input.ask("Exit?(y - yes): ")));
     }
 
     public static void main(String[] args) {
