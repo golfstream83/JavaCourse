@@ -23,7 +23,7 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            menu.select(input.ask("select: ", menu.getAcceptableRange()));
+            menu.select(input.ask("\n select the menu item: ", menu.getAcceptableRange()));
         } while (!"y".equals(this.input.ask("Exit?(y - yes): ")));
     }
 
