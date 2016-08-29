@@ -62,6 +62,18 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * method returns a range of acceptable values ​​of menus
+     * @return array result
+     */
+    public int[] getAcceptableRange () {
+        int [] result = new int[this.actions.length];
+        for (int i = 0; i != result.length; i++) {
+            result[i] = actions[i].key();
+        }
+        return result;
+    }
+
 
     private class AddItem extends BaseAction {
 
