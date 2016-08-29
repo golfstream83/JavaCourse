@@ -26,13 +26,13 @@ public class MenuTracker {
      * method fills the array "actions"
      */
     public void fillActions() {
-        this.actions[position++] = this.new AddItem(this.input, this.tracker);
-        this.actions[position++] = this.new EditItem();
-        this.actions[position++] = this.new DeleteItem();
-        this.actions[position++] = this.new ShowItems();
-        this.actions[position++] = this.new FilteredByName();
-        this.actions[position++] = this.new AddComment();
-        this.actions[position++] = this.new ShowCommentsSingleItem();
+        this.actions[position++] = this.new AddItem("Add the new item");
+        this.actions[position++] = this.new EditItem("Edit the item");
+        this.actions[position++] = this.new DeleteItem("Delete item");
+        this.actions[position++] = this.new ShowItems("Show all items");
+        this.actions[position++] = this.new FilteredByName("Filtered by name");
+        this.actions[position++] = this.new AddComment("Add a comment");
+        this.actions[position++] = this.new ShowCommentsSingleItem("Show comments item");
     }
 
     /**
@@ -63,9 +63,10 @@ public class MenuTracker {
     }
 
 
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
 
-        public AddItem(Input input, Tracker tracker) {
+        public AddItem(String name) {
+            super(name);
         }
 
         /**
@@ -88,19 +89,15 @@ public class MenuTracker {
             String desc = input.ask("Please, enter the tasks desc: ");
             tracker.addItem(new Item(name, desc));
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Add the new item");
-        }
     }
 
 
-    private class EditItem implements UserAction {
+    private class EditItem extends BaseAction {
+
+        public EditItem(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return
@@ -124,19 +121,15 @@ public class MenuTracker {
             item.setId(id);
             tracker.editItem(item);
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Edit the item");
-        }
     }
 
 
-    private class DeleteItem implements UserAction {
+    private class DeleteItem extends BaseAction {
+
+        public DeleteItem(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return key
@@ -156,19 +149,15 @@ public class MenuTracker {
             String id = input.ask("Please, enter the task's id: ");
             tracker.deleteItem(id);
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Delete item");
-        }
     }
 
 
-    private class ShowItems implements UserAction {
+    private class ShowItems extends BaseAction {
+
+        public ShowItems(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return key
@@ -189,19 +178,15 @@ public class MenuTracker {
                 System.out.println(item.toString());
             }
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Show all items");
-        }
     }
 
 
-    private class FilteredByName implements UserAction {
+    private class FilteredByName extends BaseAction {
+
+        public FilteredByName(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return key
@@ -223,19 +208,15 @@ public class MenuTracker {
                     System.out.println(String.format("id=%s name=%s desc=%s", item.getId(), item.getName(), item.getDescription()));
             }
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Filtered by name");
-        }
     }
 
 
-    private class AddComment implements UserAction {
+    private class AddComment extends BaseAction {
+
+        public AddComment(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return key
@@ -257,18 +238,14 @@ public class MenuTracker {
             Item tempItem = tracker.findById(id);
             tempItem.setComment(new Comment(comment));
         }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Add a comment");
-        }
     }
 
-    private class ShowCommentsSingleItem implements UserAction {
+    private class ShowCommentsSingleItem extends BaseAction {
+
+        public ShowCommentsSingleItem(String name) {
+            super(name);
+        }
+
         /**
          * method returns the class key
          * @return key
@@ -292,15 +269,6 @@ public class MenuTracker {
                     System.out.println(comment.getComment());
                 }
             }
-        }
-
-        /**
-         * method creates a menu item
-         * @return menu item
-         */
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Show comments item");
         }
     }
 }
