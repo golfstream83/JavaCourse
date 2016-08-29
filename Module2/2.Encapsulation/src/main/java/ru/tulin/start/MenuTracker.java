@@ -186,7 +186,6 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             for (Item item : tracker.showAllItem()) {
-                    //System.out.println(String.format("id=%s name=%s desc=%s", item.getId(), item.getName(), item.getDescription()));
                 System.out.println(item.toString());
             }
         }
@@ -256,7 +255,7 @@ public class MenuTracker {
             String id = input.ask("Please, enter the task's id: ");
             String comment = input.ask("Please enter a comment to the task: ");
             Item tempItem = tracker.findById(id);
-            tempItem.setComment(comment);
+            tempItem.setComment(new Comment(comment));
         }
 
         /**

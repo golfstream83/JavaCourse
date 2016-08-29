@@ -14,7 +14,7 @@ public class Item {
     public String description;
     private Date create;
     private String id;
-    private Comment comments[] = new Comment[10];
+    private Comment comments[] = new Comment[5];
 
     public Item(String name, String description) {
         this.name = name;
@@ -143,10 +143,10 @@ public class Item {
      * Setter for the field "comments"
      * @param comment
      */
-    public void setComment(String comment) {
+    public void setComment(Comment comment) {
         for (int index = 0; index != this.comments.length; index++) {
             if (this.comments[index] == null) {
-                this.comments[index] = new Comment(comment);
+                this.comments[index] = comment;
                 break;
             }
         }
