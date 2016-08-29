@@ -23,8 +23,14 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            menu.select(input.ask("\n select the menu item: ", menu.getAcceptableRange()));
-        } while (!"y".equals(this.input.ask("Exit?(y - yes): ")));
+            int entry = input.ask("\n select the menu item: ", menu.getAcceptableRange());
+            if (entry == 7) {
+                break;
+            }
+            else {
+                menu.select(entry);
+            }
+        } while (!"y".equals(this.input.ask("To exit the program press (Y) To continue work press (Enter)")));
     }
 
     public static void main(String[] args) {
