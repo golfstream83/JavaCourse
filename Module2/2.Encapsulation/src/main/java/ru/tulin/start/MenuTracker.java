@@ -248,8 +248,10 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id: ");
             String comment = input.ask("Please enter a comment to the task: ");
-            Item tempItem = tracker.findById(id);
-            tempItem.setComment(new Comment(comment));
+            if (id != null && !id.equals("")) {
+                Item tempItem = tracker.findById(id);
+                tempItem.setComment(new Comment(comment));
+            }
         }
     }
 
@@ -276,11 +278,13 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please, enter the task's id: ");
+            if (id != null && !id.equals("")) {
             Item tempItem = tracker.findById(id);
             for (Comment comment : tempItem.getComments()) {
                 if (comment != null) {
                     System.out.println(comment.getComment());
                 }
+            }
             }
         }
     }
