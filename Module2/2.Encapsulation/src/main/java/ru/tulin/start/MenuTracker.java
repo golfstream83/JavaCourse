@@ -134,7 +134,9 @@ public class MenuTracker {
             String desc = input.ask("Please, enter the tasks desc: ");
             Item item = new Item(name, desc);
             item.setId(id);
-            tracker.editItem(item);
+            if (!name.equals("")) {
+                tracker.editItem(item);
+            }
         }
     }
 
