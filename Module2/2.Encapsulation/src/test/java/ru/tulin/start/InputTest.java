@@ -4,6 +4,8 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.*;
+
+import ru.tulin.models.Comment;
 import ru.tulin.models.Item;
 
 /**
@@ -149,5 +151,48 @@ public class InputTest {
 
         //action
         assertThat(tracker.filteredByName("name").length, is(2));
+    }
+
+    @Test
+    public void whenAddCommentToItemShouldAddComment() throws Exception {
+        //assign
+        Tracker tracker = new Tracker();
+        String[] answers = {"5", "123", "comment"};
+        StubInput stubInput = new StubInput(answers);
+        MenuTracker menuTracker = new MenuTracker(stubInput, tracker);
+        String numberMenu = stubInput.ask("");
+        Item item = new Item("name", "desc");
+
+        //act
+        menuTracker.fillActions();
+        tracker.addItem(item);
+        item.setId("123");
+        menuTracker.select(Integer.valueOf(numberMenu));
+
+        //action
+        assertFalse(tracker.showAllItem()[0].getComments()[0] == null);
+    }
+
+    @Test
+    public void whenAddSeveralCommentsToItemShouldAddComments() throws Exception {
+        //assign
+        Tracker tracker = new Tracker();
+        String[] answers = {"6", "123"};
+        StubInput stubInput = new StubInput(answers);
+        MenuTracker menuTracker = new MenuTracker(stubInput, tracker);
+        String numberMenu = stubInput.ask("");
+        Item item = new Item("name", "desc");
+
+        //act
+        menuTracker.fillActions();
+        tracker.addItem(item);
+        item.setId("123");
+        item.setComment(new Comment("comment1"));
+        item.setComment(new Comment("comment2"));
+        menuTracker.select(Integer.valueOf(numberMenu));
+
+        //action
+        assertTrue(tracker.showAllItem()[0].getComments()[0] != null);
+        assertTrue(tracker.showAllItem()[0].getComments()[1] != null);
     }
 }
