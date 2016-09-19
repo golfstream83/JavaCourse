@@ -79,13 +79,16 @@ public class ChessBoard {
      * @param position
      * @return true or false
      */
-    public boolean checkForCorrectPosition(Position position) {
+    public boolean checkForCorrectPosition(Position position) throws InvalidMoveException {
         boolean result = false;
 
         if(position != null &&
                 (position.getX() >= 0 && position.getX() <= 7) &&
                 (position.getY() >= 0 && position.getY() <= 7)) {
             result = true;
+        }
+        else {
+            throw new InvalidMoveException("The value is outside the boundaries of the board");
         }
 
         return  result;
@@ -97,7 +100,7 @@ public class ChessBoard {
      * @param newPosition
      * @return true or false
      */
-    public boolean checkNoFiguresOnTheWay(Figure figure, Position newPosition) {
+    public boolean checkNoFiguresOnTheWay(Figure figure, Position newPosition) throws InvalidMoveException {
         boolean result = true;
 
             if(figure.getPosition().getX() == newPosition.getX() &&
@@ -105,17 +108,17 @@ public class ChessBoard {
                 for(int i = figure.getPosition().getY() + 1; i <= newPosition.getY(); i++) {
                     if(board[i][figure.getPosition().getX()] != null) {
                         result = false;
-                        break;
+                        throw new InvalidMoveException("Such a move is not possible for this figure.");
                     }
                 }
             }
 
         if(figure.getPosition().getX() == newPosition.getX() &&
                 figure.getPosition().getY() > newPosition.getY()) {
-            for(int i = figure.getPosition().getY() - 1; i <= newPosition.getY(); i--) {
+            for(int i = figure.getPosition().getY() - 1; i >= newPosition.getY(); i--) {
                 if(board[i][figure.getPosition().getX()] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
             }
         }
@@ -125,17 +128,17 @@ public class ChessBoard {
                 for(int i = figure.getPosition().getX() + 1; i <= newPosition.getX(); i++) {
                     if(board[figure.getPosition().getY()][i] != null) {
                         result = false;
-                        break;
+                        throw new InvalidMoveException("Such a move is not possible for this figure.");
                     }
                 }
             }
 
         if(figure.getPosition().getY() == newPosition.getY() &&
                 figure.getPosition().getX() > newPosition.getX()) {
-            for(int i = figure.getPosition().getX() - 1; i <= newPosition.getX(); i--) {
+            for(int i = figure.getPosition().getX() - 1; i >= newPosition.getX(); i--) {
                 if(board[figure.getPosition().getY()][i] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
             }
         }
@@ -146,7 +149,7 @@ public class ChessBoard {
                 int j = figure.getPosition().getY() + 1;
                 if(board[j][i] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
                 j++;
             }
@@ -158,7 +161,7 @@ public class ChessBoard {
                 int j = figure.getPosition().getY() - 1;
                 if(board[j][i] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
                 j--;
             }
@@ -170,7 +173,7 @@ public class ChessBoard {
                 int j = figure.getPosition().getY() - 1;
                 if(board[j][i] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
                 j--;
             }
@@ -182,7 +185,7 @@ public class ChessBoard {
                 int j = figure.getPosition().getY() + 1;
                 if(board[j][i] != null) {
                     result = false;
-                    break;
+                    throw new InvalidMoveException("Such a move is not possible for this figure.");
                 }
                 j++;
             }
