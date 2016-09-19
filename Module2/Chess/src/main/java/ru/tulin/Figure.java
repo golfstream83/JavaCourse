@@ -1,4 +1,4 @@
-package ru.tulin.models;
+package ru.tulin;
 
 import ru.tulin.InvalidMoveException;
 import ru.tulin.Position;

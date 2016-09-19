@@ -1,5 +1,6 @@
 package ru.tulin.models;
 
+import ru.tulin.Figure;
 import ru.tulin.InvalidMoveException;
 import ru.tulin.Position;
 
