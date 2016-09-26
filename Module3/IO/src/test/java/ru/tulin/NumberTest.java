@@ -21,7 +21,6 @@ public class NumberTest {
     public void whenIntroducingEvenNumberShouldGetTrue() {
         String number = "1";
         System.setIn(new ByteArrayInputStream((number.getBytes())));
-        Scanner scanner = new Scanner(System.in);
         Number testNumber = new Number();
         assertTrue(testNumber.checkParity());
     }
@@ -30,7 +29,6 @@ public class NumberTest {
     public void whenIntroducingOddNumberShouldGetFalse() {
         String number = "1.2";
         System.setIn(new ByteArrayInputStream((number.getBytes())));
-        Scanner scanner = new Scanner(System.in);
         Number testNumber = new Number();
         assertFalse(testNumber.checkParity());
     }
