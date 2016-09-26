@@ -9,6 +9,7 @@
 	<modules>
 		<module>Modul1-Basic-syntax</module>
         <module>Module2</module>
+        <module>Module3</module>
 	</modules>  
 
   <properties>

@@ -14,6 +14,7 @@
 	<modules>
 		<module>1.Inheritance</module>
         <module>2.Encapsulation</module>
+        <module>Chess</module>
 
 
 	</modules>  
