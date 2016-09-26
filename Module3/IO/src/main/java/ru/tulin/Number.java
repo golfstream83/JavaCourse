@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Number {
 
     /**
-     * method checks the number of even or odd
+     *  method checks the number of even or odd
      * @return true or false
      */
     public boolean checkParity() {
