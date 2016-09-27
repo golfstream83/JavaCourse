@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class SumOfNumbers {
     /**
-     * method calculates the sum of two integers
+     * method checks whether the number is an integer
      */
     public int checkParity() throws IsNotAnIntegerException {
         Scanner sc = new Scanner(System.in);
@@ -26,6 +26,9 @@ public class SumOfNumbers {
         return result;
     }
 
+    /**
+     * method calculates the sum of two integers
+     */
     public int sum (int number1, int number2) {
         int result = number1 + number2;
         System.out.println(String.format("%s + %s = %s", number1, number2, result));
