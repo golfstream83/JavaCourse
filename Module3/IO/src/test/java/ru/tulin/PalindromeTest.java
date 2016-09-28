@@ -22,6 +22,14 @@ public class PalindromeTest {
     }
 
     @Test
+    public void whenCheckPalindromeWithCapitalLetterThenGetTrue() throws IsNotWordOddNumberOfLettersException {
+        Palindrome palindrome = new Palindrome();
+        String string = "Ротор";
+        System.setIn(new ByteArrayInputStream(string.getBytes()));
+        assertTrue(palindrome.isPalindrome(palindrome.checkLengthWord()));
+    }
+
+    @Test
     public void whenCheckNotPalindromeThenGetFalse() throws IsNotWordOddNumberOfLettersException {
         Palindrome palindrome = new Palindrome();
         String string = "посох";

@@ -16,7 +16,7 @@ public class Palindrome {
         String result;
 
         System.out.println("enter the word: ");
-        String input = sc.nextLine();
+        String input = sc.nextLine().toLowerCase();
 
         if (input.length()%2 != 0) {
             result = input;
