@@ -14,6 +14,9 @@ import java.util.Scanner;
 public class ConsoleChat {
     Random random = new Random();
     Scanner sc = new Scanner(System.in);
+    static final String GO = "продолжить";
+    static final String STOP = "стоп";
+    static final String END = "закончить";
 
     public ConsoleChat() throws IOException {
     }
@@ -47,7 +50,7 @@ public class ConsoleChat {
             input = sc.nextLine();
             pw.println(input);
 
-            if (input.toLowerCase().equals("стоп") || input.toLowerCase().equals("закончить")) {
+            if (STOP.equalsIgnoreCase(input) || END.equalsIgnoreCase(input)) {
                 toggle = false;
             }
             if (toggle) {
@@ -55,11 +58,11 @@ public class ConsoleChat {
                 System.out.println(temp);
                 pw.println(temp);
             }
-            if (input.toLowerCase().equals("продолжить")) {
+            if (GO.equalsIgnoreCase(input)) {
                 toggle = true;
             }
         }
-        while (!input.toLowerCase().equals("закончить"));
+        while (!END.equalsIgnoreCase(input));
 
         pw.close();
     }
