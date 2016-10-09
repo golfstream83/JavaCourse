@@ -14,16 +14,19 @@ public class Client {
     static final String GO = "продолжить";
     static final String STOP = "стоп";
     static final String END = "закончить";
-    static final int servPort = 5000;
-    static final String ipAdress = "127.0.0.1";
 
-    public void launch(File logPath) throws FileNotFoundException {
+
+    protected Socket createSocket(String hostname, int port) throws IOException {
+        return new Socket(hostname, port);
+    }
+
+    public boolean launch(File logPath, String hostname, int port) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(new File(String.valueOf(Paths.get(System.getProperty("user.dir") + logPath))));
+        boolean sent = false;
 
         try {
-            InetAddress inetAddress = InetAddress.getByName(ipAdress);
-            System.out.println("Подключаемся к серверу: " + servPort);
-            Socket socket = new Socket(inetAddress, servPort);
+            System.out.println("Подключаемся к серверу: " + port);
+            Socket socket = createSocket(hostname, port);
 
             InputStream socketIn = socket.getInputStream();
             OutputStream socketOut = socket.getOutputStream();
@@ -61,11 +64,14 @@ public class Client {
             }
 
             System.out.println("Работа завершена");
+            sent = true;
 
         }catch (Exception e) {
             e.printStackTrace();
         }
 
         pw.close();
+
+        return sent;
     }
 }
