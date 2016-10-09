@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 public class StartClient {
     public static void main(String[] args) throws FileNotFoundException {
         String logPath = "\\Module3\\Socket\\src\\main\\java\\ru\\tulin\\log.txt";
-        new Client().launch(new File(logPath));
+        final int servPort = 5000;
+        final String ipAdress = "127.0.0.1";
+        new Client().launch(new File(logPath), ipAdress, servPort);
     }
 }
