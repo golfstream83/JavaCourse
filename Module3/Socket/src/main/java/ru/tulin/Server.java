@@ -40,7 +40,7 @@ public class Server {
      * method starts the chat
      *
      */
-    public void launch (File filePath) throws IOException {
+    public boolean launch (File filePath) throws IOException {
 
         String[] answers = getArrayAnswersFromFile(filePath);
         String input = null;
@@ -54,20 +54,23 @@ public class Server {
             InputStream socketIn = socket.getInputStream();
             OutputStream socketOut = socket.getOutputStream();
 
-            DataInputStream in = new DataInputStream(socketIn);
-            DataOutputStream out = new DataOutputStream(socketOut);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socketIn));
+            PrintWriter out = new PrintWriter(socketOut, true);
 
             while (!END.equalsIgnoreCase(input)) {
-                input = in.readUTF();
+                input = in.readLine();
                 System.out.println("Мы получили следующее сообщение: \n" + input);
                 String temp = getRandomAnswer(answers);
                 System.out.println("Отправка обратно");
                 System.out.println(temp);
-                out.writeUTF(temp);
+                out.println(temp);
                 out.flush();
             }
+
         } catch (Exception e) {
             System.out.println("Работа завершена");
         }
+
+        return true;
     }
 }

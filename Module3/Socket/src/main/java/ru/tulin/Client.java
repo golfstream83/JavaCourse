@@ -20,6 +20,11 @@ public class Client {
         return new Socket(hostname, port);
     }
 
+    String getReadLine() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        return reader.readLine();
+    }
+
     public boolean launch(File logPath, String hostname, int port) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(new File(String.valueOf(Paths.get(System.getProperty("user.dir") + logPath))));
         boolean sent = false;
@@ -31,17 +36,16 @@ public class Client {
             InputStream socketIn = socket.getInputStream();
             OutputStream socketOut = socket.getOutputStream();
 
-            DataInputStream in = new DataInputStream(socketIn);
-            DataOutputStream out = new DataOutputStream(socketOut);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socketIn));
+            PrintWriter out = new PrintWriter(socketOut, true);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String input = null;
             boolean toggle = true;
 
             System.out.println("Введите фразу для передачи серверу: ");
 
             while (!END.equalsIgnoreCase(input)) {
-                input = reader.readLine();
+                input = getReadLine();
                 pw.println(input);
 
                 if(STOP.equalsIgnoreCase(input) || END.equalsIgnoreCase(input)) {
@@ -49,9 +53,9 @@ public class Client {
                 }
 
                 if (toggle) {
-                    out.writeUTF(input);
+                    out.println(input);
                     out.flush();
-                    input = in.readUTF();
+                    input = in.readLine();
                     pw.println(input);
                     System.out.println("Сервер прислал в ответ: " + input);
                     System.out.println("Введите следующую фразу для отправки на сервер: ");

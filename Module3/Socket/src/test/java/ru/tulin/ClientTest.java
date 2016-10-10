@@ -2,13 +2,13 @@ package ru.tulin;
 
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Viktor Tulin
@@ -21,6 +21,7 @@ public class ClientTest {
     public void whenSentMessageThenTrue() throws IOException {
         String logPath = "\\src\\test\\java\\ru\\tulin\\log.txt";
         String command = "закончить";
+        String servResponse = "ответ";
         final Socket socket = mock(Socket.class);
 
         Client text = new Client() {
@@ -30,12 +31,14 @@ public class ClientTest {
             }
         };
 
+        when(socket.getInputStream()).thenReturn(new ByteArrayInputStream(servResponse.getBytes()));
+        when(socket.getOutputStream()).thenReturn(new ByteArrayOutputStream());
+
         System.setIn(new ByteArrayInputStream(command.getBytes()));
         boolean result = text.launch(new File(logPath), "localhost", 1234);
 
+
         assertTrue(result);
     }
-
-
 
 }
