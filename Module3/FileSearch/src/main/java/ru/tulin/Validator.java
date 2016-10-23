@@ -11,6 +11,10 @@ import java.io.File;
 public class Validator {
 
     private String[] inputArray;
+    private String pathDir;
+    private String paramFile;
+    private String modeSearch;
+    private String logName;
 
     public Validator(String[] inputArray) {
         this.inputArray = inputArray;
@@ -108,10 +112,48 @@ public class Validator {
                 checkAllKeys() &&
                 checkPathExists() &&
                 checkLogFileName()) {
+
+            this.pathDir = this.inputArray[1];
+            this.paramFile = this.inputArray[3];
+            this.modeSearch = this.inputArray[4];
+            this.logName = this.inputArray[6];
+
             return true;
         }
         else {
             return false;
         }
+    }
+
+    /**
+     * getter for "pathDir"
+     * @return
+     */
+    public String getPathDir() {
+        return pathDir;
+    }
+
+    /**
+     * getter for "paramFile"
+     * @return
+     */
+    public String getParamFile() {
+        return paramFile;
+    }
+
+    /**
+     * getter for "modeSearch"
+     * @return
+     */
+    public String getModeSearch() {
+        return modeSearch;
+    }
+
+    /**
+     * getter for "logName"
+     * @return
+     */
+    public String getLogName() {
+        return logName;
     }
 }
