@@ -24,53 +24,48 @@ public class FileSearch {
     protected void search(String logPath) throws Exception {
 
         Validator validator = new Validator(paramArr);
-        boolean filesFound = false;
+        boolean filesFound;
 
         if(validator.validation()) {
 
-            String pathDir = paramArr[1];
-            String paramFile = paramArr[3];
-            String modeSearch = paramArr[4];
-            String logName = paramArr[6];
+            pw = new PrintWriter(new File(String.format("%s%s%s",logPath,"\\",validator.getLogName())));
+            File file = new File(validator.getPathDir());
 
-            pw = new PrintWriter(new File(logPath + "\\" + logName));
+            filesFound = scanFolders(file, chooseFilter(validator.getModeSearch(), validator.getParamFile()));
 
-            File file = new File(pathDir);
-
-                if (modeSearch.equals("-m")) {
-                    filesFound = scanFolders(file, new FilterMask(paramFile));
-                    if (!filesFound) {
-                        System.out.println(String.format(
-                                "%s %s", "folder and subfolders does not contain files with the extension:",
-                                paramFile));
-                    }
-                }
-
-                if (modeSearch.equals("-f")) {
-                filesFound = scanFolders(file, new FilterName(paramFile));
-                    if (!filesFound) {
-                        System.out.println(String.format(
-                                "%s %s", "folder and subfolders does not contain files with name:",
-                                paramFile));
-                    }
-                }
-
-                 if (modeSearch.equals("-r")) {
-                filesFound = scanFolders(file, new FilterRegularExpressions(paramFile));
-                     if (!filesFound) {
-                         System.out.println(String.format(
-                                 "%s %s", "folder and subfolders does not contain files with regexp pattern:",
-                                 paramFile));
-                     }
-                }
-
-                if (filesFound) {
+            if (filesFound) {
                     System.out.println(String.format("%s %s", "see the list of files in the file",
                             logPath));
+                }
+            else {
+                    System.out.println("folder and sub-folders do not contain files with the specified parameters");
                 }
 
             pw.close();
         }
+    }
+
+    /**
+     * method creates a class-filter object, depending on the selected parameter filtering
+     * @param mode
+     * @param paramFile
+     * @return object FilenameFilter class
+     */
+    private FilenameFilter chooseFilter(String mode, String paramFile) {
+
+        FilenameFilter result = null;
+
+        if (mode.equals("-m")){
+            result = new FilterMask(paramFile);
+        }
+        else if (mode.equals("-f")) {
+            result = new FilterName(paramFile);
+        }
+        else if (mode.equals("-r")) {
+            result = new FilterRegularExpressions(paramFile);
+        }
+
+        return result;
     }
 
     /**
