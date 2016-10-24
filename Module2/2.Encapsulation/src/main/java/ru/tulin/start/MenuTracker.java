@@ -92,7 +92,7 @@ public class MenuTracker {
         }
 
         /**
-         * method takes the data entered by the user and starts a method of creating a new item
+         * the method adds a new item on the basis of data entered by the user
          * @param input
          * @param tracker
          */
@@ -123,7 +123,7 @@ public class MenuTracker {
         }
 
         /**
-         * The method takes the data entered by the user and starts the editing method of item
+         * method of editing item on the basis of the data entered by the user
          * @param input
          * @param tracker
          */
@@ -157,7 +157,7 @@ public class MenuTracker {
         }
 
         /**
-         * The method takes the data entered by the user and removes the item with the entered id
+         * method removes the item based on data entered by the user
          * @param input
          * @param tracker
          */
@@ -214,7 +214,7 @@ public class MenuTracker {
         }
 
         /**
-         * The method takes the user input and outputs to the console all items whose name contains the word name
+         * The method outputs to the console all items whose name contains the word name
          * @param input
          * @param tracker
          */
@@ -244,7 +244,7 @@ public class MenuTracker {
         }
 
         /**
-         * method looks for id item and adds it to comment
+         * method adds a comment to the item on the basis of the data entered by the user
          * @param input
          * @param tracker
          */
@@ -298,6 +298,10 @@ public class MenuTracker {
             super(name);
         }
 
+        /**
+         * method returns the class key
+         * @return
+         */
         @Override
         public int key() {
             return 7;
@@ -307,5 +311,6 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
 
         }
+
     }
 }
