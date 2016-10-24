@@ -14,7 +14,7 @@ public class Tracker {
     private static final Random RN = new Random();
 
     /**
-     * method creates a new item and places it in the array of items
+     * method creates a new item in the array of items
      * @param item
      * @return new item
      */
