@@ -7,6 +7,12 @@ package ru.tulin.start;
  */
 
 public class ValidateInput extends ConsoleInput {
+    /**
+     * method checks the entered key
+     * @param question
+     * @param range
+     * @return
+     */
     @Override
     public int ask(String question, int[] range) {
         boolean invalid = true;
