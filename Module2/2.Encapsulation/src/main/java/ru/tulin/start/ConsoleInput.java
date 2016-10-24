@@ -12,12 +12,24 @@ public class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * method reads the data entered by the user
+     * @param question
+     * @return
+     */
     @Override
     public String ask(String question) {
         System.out.print(question);
         return scanner.nextLine();
     }
 
+    /**
+     * method checks the entered key
+     * @param question
+     * @param range
+     * @return
+     * @throws MenuOutException
+     */
     @Override
     public int ask(String question, int[] range) throws MenuOutException {
         int key = Integer.valueOf(this.ask(question));
