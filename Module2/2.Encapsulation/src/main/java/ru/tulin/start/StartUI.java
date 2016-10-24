@@ -8,33 +8,33 @@ package ru.tulin.start;
 
 public class StartUI {
     private Input input;
+    private Tracker tracker;
+    private MenuTracker menu;
 
-    public StartUI(Input input) {
+    public StartUI(final Input input, final Tracker tracker, final MenuTracker menu) {
         this.input = input;
+        this.tracker = tracker;
+        this.menu = menu;
     }
 
     /**
-     * initialization method
+     * method displays a menu until the user does not want to leave the program
      */
     public void init() {
-
-        Tracker tracker = new Tracker();
-        MenuTracker menu = new MenuTracker(this.input, tracker);
-        menu.fillActions();
         do {
             menu.show();
             int entry = this.input.ask("\nselect the menu item: ", menu.getAcceptableRange());
-            if (entry == 7) {
-                break;
-            }
-            else {
-                menu.select(entry);
-            }
+            menu.select(entry);
+
         } while (!"y".equals(this.input.ask("To exit the program press (y) To continue work press (Enter)")));
     }
 
     public static void main(String[] args) {
+        Tracker tracker = new Tracker();
         Input input = new ValidateInput();
-        new StartUI(input).init();
+        MenuTracker menu = new MenuTracker(input, tracker);
+
+        menu.fillActions();
+        new StartUI(input, tracker, menu).init();
     }
 }
