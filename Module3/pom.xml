@@ -12,6 +12,7 @@
     <modules>
         <module>IO</module>
         <module>Socket</module>
+        <module>FileSearch</module>
     </modules>
 
     <properties>
