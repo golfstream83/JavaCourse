@@ -25,13 +25,14 @@ public class StartUI {
         do {
             menu.show();
             int entry = this.input.ask("\nselect the menu item: ", menu.getAcceptableRange());
-            menu.select(entry);
+            menu.select(Key.getKeyFromNumber(entry));
 
         } while (!"y".equals(this.input.ask("To exit the program press (y) To continue work press (Enter): ")));
 
     }
 
     public static void main(String[] args) {
+
         EngineerCalculator calc = new EngineerCalculator();
         ConsoleInput input = new ValidateInput();
         Print print = new Print();
