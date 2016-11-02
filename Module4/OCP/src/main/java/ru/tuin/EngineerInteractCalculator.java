@@ -9,7 +9,6 @@ public class EngineerInteractCalculator extends InteractCalculator {
 
     private EngineerCalculator engCalc; //engineering calculator
     private ConsoleInput input = super.getInput();
-    private int position = super.getPosition(); //variable position of the action in the Action menu
     private CalcAction[] actions = super.getActions(); //Action array variable
     private double prevResult = super.getPrevResult(); //variable result of the previous calculation
     private double number1; //variable is the first number of the calculation
@@ -17,8 +16,8 @@ public class EngineerInteractCalculator extends InteractCalculator {
     public EngineerInteractCalculator(ConsoleInput input, Calculator calc, Print print) {
         super(input, calc, print);
         this.engCalc = (EngineerCalculator) calc;
-        this.actions[position++] = this.new Cosine("Cosine");
-        this.actions[position++] = this.new Sinus("Sinus");
+        this.actions[Key.COSINE.getNumFromKey()] = this.new Cosine("Cosine");
+        this.actions[Key.SINUS.getNumFromKey()] = this.new Sinus("Sinus");
     }
 
     /**
@@ -47,7 +46,7 @@ public class EngineerInteractCalculator extends InteractCalculator {
 
         @Override
         int key() {
-            return 5;
+            return Key.COSINE.getNumFromKey();
         }
 
         @Override
@@ -71,7 +70,7 @@ public class EngineerInteractCalculator extends InteractCalculator {
 
         @Override
         int key() {
-            return 6;
+            return Key.SINUS.getNumFromKey();
         }
 
         @Override

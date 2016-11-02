@@ -11,7 +11,6 @@ public class InteractCalculator {
     private Calculator calc;
     private Print print;
     private CalcAction[] actions = new CalcAction[7]; //Action array variable
-    private int position = 0; //variable position of the action in the Action menu
     private double prevResult; //variable result of the previous calculation
     private double number1; //variable is the first number of the calculation
     private double number2; //variable is the second number for the calculation
@@ -21,11 +20,11 @@ public class InteractCalculator {
         this.calc = calc;
         this.print = print;
 
-        this.actions[position++] = this.new ExitFromProgram("Exit");
-        this.actions[position++] = this.new AdditionNumbers("Addition");
-        this.actions[position++] = this.new SubstractionNumbers("Subtraction");
-        this.actions[position++] = this.new DivisionNumber("Division");
-        this.actions[position++] = this.new MultiplicationNumber("Multiplication");
+        this.actions[Key.EXIT.getNumFromKey()] = this.new ExitFromProgram("Exit");
+        this.actions[Key.ADDITION.getNumFromKey()] = this.new AdditionNumbers("Addition");
+        this.actions[Key.SUBTRUCTION.getNumFromKey()] = this.new SubstractionNumbers("Subtraction");
+        this.actions[Key.DIVISION.getNumFromKey()] = this.new DivisionNumber("Division");
+        this.actions[Key.MULTIPLICATION.getNumFromKey()] = this.new MultiplicationNumber("Multiplication");
     }
 
     /**
@@ -34,14 +33,6 @@ public class InteractCalculator {
      */
     public ConsoleInput getInput() {
         return input;
-    }
-
-    /**
-     * getter for "position"
-     * @return position
-     */
-    public int getPosition() {
-        return position;
     }
 
     /**
@@ -64,8 +55,8 @@ public class InteractCalculator {
      * method to call the method execute the object of the inner class by key
      * @param key
      */
-    public void select(int key) {
-        this.actions[key].execute(this.input, this.calc, this.print);
+    public void select(Key key) {
+        this.actions[key.getNumFromKey()].execute(this.input, this.calc, this.print);
     }
 
     /**
@@ -119,7 +110,7 @@ public class InteractCalculator {
 
         @Override
         int key() {
-            return 0;
+            return Key.EXIT.getNumFromKey();
         }
 
         @Override
@@ -139,7 +130,7 @@ public class InteractCalculator {
 
         @Override
         int key() {
-            return 1;
+            return Key.ADDITION.getNumFromKey();
         }
 
         @Override
@@ -162,7 +153,7 @@ public class InteractCalculator {
 
         @Override
         int key() {
-            return 2;
+            return Key.SUBTRUCTION.getNumFromKey();
         }
 
         @Override
@@ -185,7 +176,7 @@ public class InteractCalculator {
 
         @Override
         int key() {
-            return 3;
+            return Key.DIVISION.getNumFromKey();
         }
 
         @Override
@@ -208,7 +199,7 @@ public class InteractCalculator {
 
         @Override
         int key() {
-            return 4;
+            return Key.MULTIPLICATION.getNumFromKey();
         }
 
         @Override
