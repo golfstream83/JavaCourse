@@ -2,7 +2,6 @@ package ru.tuin;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
@@ -19,13 +18,13 @@ public class EngineerInteractCalculatorTest {
         ValidateInput input = mock(ValidateInput.class);
         Print print = new Print();
         EngineerInteractCalculator engineerInteractCalculator = new EngineerInteractCalculator(input, engCalc, print);
-        double expectedResult = 0.8414709848078965;
+        double expectedResult = Math.sin(1d);
 
         when(input.askNumber("Please, enter the number: ")).thenReturn(1d);
-        engineerInteractCalculator.select(6);
+        engineerInteractCalculator.select(Key.SINUS);
         double actualResult = engineerInteractCalculator.getPrevResult();
 
-        assertThat(actualResult, is(expectedResult));
+        assertEquals(expectedResult, actualResult, 0.001);
     }
 
     @Test
@@ -34,13 +33,13 @@ public class EngineerInteractCalculatorTest {
         ValidateInput input = mock(ValidateInput.class);
         Print print = new Print();
         EngineerInteractCalculator engineerInteractCalculator = new EngineerInteractCalculator(input, engCalc, print);
-        double expectedResult = 0.5403023058681398;
+        double expectedResult = Math.cos(1d);
 
         when(input.askNumber("Please, enter the number: ")).thenReturn(1d);
-        engineerInteractCalculator.select(5);
+        engineerInteractCalculator.select(Key.COSINE);
         double actualResult = engineerInteractCalculator.getPrevResult();
 
-        assertThat(actualResult, is(expectedResult));
+        assertEquals(expectedResult, actualResult, 0.001);
     }
 
 }
