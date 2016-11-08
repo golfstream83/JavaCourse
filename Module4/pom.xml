@@ -12,6 +12,7 @@
     <modules>
         <module>SRP</module>
         <module>OCP</module>
+        <module>LSP</module>
     </modules>
 
     <properties>
