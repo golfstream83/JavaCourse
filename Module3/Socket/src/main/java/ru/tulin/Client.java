@@ -16,7 +16,6 @@ public class Client {
     static final String STOP = "стоп";
     static final String END = "закончить";
 
-
     protected Socket createSocket(String hostname, int port) throws IOException {
         return new Socket(hostname, port);
     }
