@@ -11,6 +11,7 @@ import java.nio.file.Paths;
  * @since 03.10.2016
  */
 public class Client {
+
     static final String GO = "продолжить";
     static final String STOP = "стоп";
     static final String END = "закончить";
